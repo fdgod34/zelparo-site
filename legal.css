@@ -1,0 +1,23 @@
+/* Legal pages (privacy, terms, account deletion): style.css plus a reading column. */
+[hidden]{display:none!important}
+.language a{color:#767775;padding:10px 4px}.language a[aria-current=true]{font-weight:700;color:var(--ink)}.language a:hover{color:var(--ink)}
+.legal{max-width:880px;padding-top:8px;padding-bottom:96px}
+.legal-nav{display:flex;flex-wrap:wrap;gap:4px 32px;border-bottom:1px solid var(--line);margin-bottom:48px}
+.legal-nav a{padding:14px 0 12px;font-size:13px;font-weight:600;color:#5d6268;border-bottom:2px solid transparent;margin-bottom:-1px}
+.legal-nav a:hover{color:var(--ink)}.legal-nav a[aria-current=page]{color:var(--ink);border-color:var(--ink)}
+.legal-text:not([hidden])+.legal-text:not([hidden]){margin-top:80px;padding-top:56px;border-top:1px solid var(--line)}
+.legal-text .eyebrow{color:var(--green)}
+.legal-text h1{font-size:clamp(30px,4vw,42px);line-height:1.15;letter-spacing:-1px;margin:16px 0 28px}
+.legal-text h2{font-size:20px;line-height:1.35;margin:44px 0 12px;scroll-margin-top:24px}
+.legal-text p,.legal-text li{font-size:16px;line-height:1.7;color:#3d4352}
+.legal-text p{margin:0 0 14px}
+.legal-text ul,.legal-text ol{margin:0 0 16px;padding-left:24px}.legal-text li{margin:6px 0}.legal-text li ul,.legal-text li ol{margin:6px 0 0}
+.legal-text li::marker{color:var(--green);font-weight:700}
+.legal-text strong{color:var(--ink)}
+.legal-text a{text-decoration:underline;text-decoration-color:#b2afa4;text-underline-offset:3px;overflow-wrap:anywhere}.legal-text a:hover{color:var(--green);text-decoration-color:currentColor}
+mark.todo{background:#f6dccd;color:#7a3416;padding:1px 4px;border-radius:3px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.legal-draft{border:1px solid var(--orange);background:#fbeee6;border-radius:6px;padding:14px 16px;margin:0 0 32px}
+.legal-text .legal-draft{font-size:14px;line-height:1.6;color:var(--ink)}
+.legal-page .footer{padding:28px 0 24px}
+.legal-page .footer-bottom{border-top:0;padding-top:0;font-size:12px;flex-wrap:wrap}.legal-page .footer-bottom a:hover{color:var(--paper)}
+@media(max-width:560px){.language a{padding:12px 3px}.legal{padding-bottom:64px}.legal-nav{gap:2px 20px;margin-bottom:32px}.legal-nav a{font-size:12px}.legal-text h1{font-size:28px;margin-bottom:22px}.legal-text h2{font-size:18px;margin-top:36px}.legal-text p,.legal-text li{font-size:15px}.legal-text:not([hidden])+.legal-text:not([hidden]){margin-top:56px;padding-top:40px}.legal-page .footer-bottom{font-size:11px}}
