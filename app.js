@@ -16,16 +16,16 @@ const strings = {
     step1Title:'Find your path',step1Body:'Leave the safe edge. Trace your own route through the garden.',step2Title:'Reclaim the garden',step2Body:'Close your line and clear an area before the creatures catch you.',step3Title:'Turn a new leaf',step3Body:'Grow your shop with your earnings, then move on to new cities.',
     worldLabel:'SAME CURIOSITY. DIFFERENT STREETS.',worldTitle:'Where to next?',worldBody:'From Istanbul to New York.<br>New gardens and a new shop in every city.',citiesLabel:'Cities',cairo:'Cairo',cityNote:'FROM GARDEN RUSH: WORLD TOUR',
     studioLabel:'BEHIND THE GAME',studioTitle:'A good game <br>begins with <br>a little curiosity.',studioBody:'At Zelparo, we build little worlds you will want to come back to.',studioBody2:'Games you can jump into, discover as you play, and watch your progress take shape. Garden Rush: World Tour is our first step. Our journey is just beginning.',
-    supportLabel:'A FEW THINGS YOU MIGHT WONDER',supportTitle:'Something on your mind?',faq1Title:'When can I play Garden Rush?',faq1Body:'The game is in development. We will share the release date and store links here when they are ready.',faq2Title:'Which devices is it being developed for?',faq2Body:'Our first target is Android phones. News about other platforms will be shared here.',faq3Title:'Which languages will be available?',faq3Body:'Garden Rush is being developed in Turkish and English.',faq4Title:'How can I contact player support?',faq4Body:'Our support address is support@zelparogames.com. Our email channel will open before the game launches.',
+    supportLabel:'A FEW THINGS YOU MIGHT WONDER',supportTitle:'Something on your mind?',faq1Title:'When can I play Garden Rush?',faq1Body:'The game is in development. We will share the release date and store links here when they are ready.',faq2Title:'Which devices is it being developed for?',faq2Body:'Our first target is Android phones. News about other platforms will be shared here.',faq3Title:'Which languages will be available?',faq3Body:'Garden Rush is being developed in Turkish and English.',faq4Title:'How can I contact player support?',faq4Body:'Write to us at <a href="mailto:support@zelparogames.com">support@zelparogames.com</a>. Account deletion and personal data requests go to this address too.',
     footerLine:'See you at the next little discovery.',footerPlace:'MADE WITH CURIOSITY.',topLabel:'Back to top',privacy:'Privacy',terms:'Terms of service',deleteAccount:'Account deletion'
   }
 };
 const cityData = {
-  istanbul:{name:{tr:'İstanbul',en:'Istanbul'},tr:'Her büyük yolculuğun küçük bir başlangıcı var. Seninki, Boğaz’ın kıyısındaki bu dükkânda.',en:'Every great journey has a small beginning. Yours starts in a little shop beside the Bosphorus.'},
-  tokyo:{name:{tr:'Tokyo',en:'Tokyo'},tr:'Sakura ağaçları, sakin bahçeler ve yepyeni bir ritim. Yolculuğun Tokyo sokaklarında devam ediyor.',en:'Cherry blossoms, quiet gardens, and a whole new rhythm. Your journey continues on the streets of Tokyo.'},
-  kahire:{name:{tr:'Kahire',en:'Cairo'},tr:'Sıcak taşların arasında yeşeren avlular. Kahire’de her bahçe, yeniden canlanmayı bekliyor.',en:'Green courtyards among warm stone walls. In Cairo, every garden is waiting to come back to life.'},
-  paris:{name:{tr:'Paris',en:'Paris'},tr:'Çiçekli avlular ve kendine özgü sokaklar. Küçük işletmene Paris’te yeni bir sayfa aç.',en:'Flower-filled courtyards and streets with their own character. Begin a new chapter for your little business in Paris.'},
-  'new-york':{name:{tr:'New York',en:'New York'},tr:'Büyük şehrin içinde küçük yeşil kaçamaklar. Dükkânının yeni adresi New York.',en:'Little green escapes in the big city. Your shop’s next address is New York.'}
+  istanbul:{image:'city-istanbul.webp',name:{tr:'İstanbul',en:'Istanbul'},tr:'Her büyük yolculuğun küçük bir başlangıcı var. Seninki, Boğaz’ın kıyısındaki bu dükkânda.',en:'Every great journey has a small beginning. Yours starts in a little shop beside the Bosphorus.'},
+  tokyo:{image:'city-tokyo.webp',name:{tr:'Tokyo',en:'Tokyo'},tr:'Sakura ağaçları, sakin bahçeler ve yepyeni bir ritim. Yolculuğun Tokyo sokaklarında devam ediyor.',en:'Cherry blossoms, quiet gardens, and a whole new rhythm. Your journey continues on the streets of Tokyo.'},
+  kahire:{image:'city-kahire.jpg',name:{tr:'Kahire',en:'Cairo'},tr:'Sıcak taşların arasında yeşeren avlular. Kahire’de her bahçe, yeniden canlanmayı bekliyor.',en:'Green courtyards among warm stone walls. In Cairo, every garden is waiting to come back to life.'},
+  paris:{image:'city-paris.webp',name:{tr:'Paris',en:'Paris'},tr:'Çiçekli avlular ve kendine özgü sokaklar. Küçük işletmene Paris’te yeni bir sayfa aç.',en:'Flower-filled courtyards and streets with their own character. Begin a new chapter for your little business in Paris.'},
+  'new-york':{image:'city-new-york.webp',name:{tr:'New York',en:'New York'},tr:'Büyük şehrin içinde küçük yeşil kaçamaklar. Dükkânının yeni adresi New York.',en:'Little green escapes in the big city. Your shop’s next address is New York.'}
 };
 let language='tr';
 let selectedCity='istanbul';
@@ -38,7 +38,7 @@ function updateCity(city, focus=false) {
   const tabs=[...document.querySelectorAll('[data-city]')];
   tabs.forEach(tab=>{ const active=tab.dataset.city===city;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus(); });
   document.getElementById('city-panel').setAttribute('aria-labelledby',`tab-${city}`);
-  document.getElementById('city-image').src=`assets/city-${city}.webp`;
+  document.getElementById('city-image').src=`assets/${data.image}`;
   document.getElementById('city-image').alt=language==='tr'?`${data.name.tr} oyun sahnesi`:`${data.name.en} game scene`;
   document.getElementById('city-name').textContent=data.name[language];
   document.getElementById('city-description').textContent=data[language];
@@ -53,7 +53,8 @@ function setLanguage(next) {
   document.querySelectorAll('[data-alt]').forEach(element=>{element.alt=strings[next][element.dataset.alt];});
   document.querySelectorAll('[data-label]').forEach(element=>{element.setAttribute('aria-label',strings[next][element.dataset.label]);});
   document.querySelectorAll('[data-lang]').forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.lang===next));});
-  document.querySelectorAll('[data-home-image],.hero-image img').forEach(img=>{img.src=`assets/home-${next}.webp`;});
+  document.querySelectorAll('[data-home-image],.hero-image img').forEach(img=>{img.src=`assets/home-${next}.jpg`;});
+  document.querySelectorAll('[data-play-image]').forEach(img=>{img.src=`assets/gameplay-${next}.jpg`;});
   updateCity(selectedCity);
 }
 // The choice is shared with the legal pages (legal.js); storage may be unavailable, then it lasts for this page only.
